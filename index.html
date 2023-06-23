@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Day-4 </h1>
+    <h2>1.What are function constructor?</h2>
+   <pre>function Person () {
+    this.name = 'John',
+    this.age = 23,
+
+     this.greet = function () {
+        console.log('hello');
+    }
+}
+
+// create objects
+const person1 = new Person();
+const person2 = new Person();
+
+// access properties
+console.log(person1.name);  
+console.log(person2.name);</pre>
+    <hr>
+    <h2>2.Explain call() bind() apply()</h2>
+    <h3>
+        Call() Method: The call method is basically used to invoke the function with different this object.
+         In JavaScript, this refers to an object. It depends on how we are calling a particular function.
+    </h3>
+    <pre>const obj = {
+        firstName: "First_name",
+        lastName: "Last_name",
+        printName: function () {
+            console.log(this.firstName 
+                + " " + this.lastName);
+        }
+    };
+    obj.printName()</pre>
+    <h3> Using apply( ) method also we can invoke a given function with different objects.</h3>
+    <pre>const obj1 = {
+        firstName: "First_name",
+        lastName: "Last_name"
+    };
+    const obj2 = {
+        firstName: "Xyz",
+        lastName: "pqr"
+    };
+    function printName() {
+        console.log(this.firstName + " " + this.lastName);
+    }
+    printName.apply(obj2);</pre>
+    <h3>Bind()</h3>
+    <pre>let p1 = {
+        firstName: 'John',
+        lastName: 'Smith'
+      };
+      let p2 = {
+        firstName: 'Ann',
+        lastName: 'Brown'
+      };
+      function sayWelcome() {
+        console.log('Welcome ' + this.firstName + ' ' + this.lastName);
+      }
+      let sayWelcomeJohn = sayWelcome.bind(p1);
+      let sayWelcomeAnn = sayWelcome.bind(p2);
+      sayWelcomeJohn(); // Welcome John Smith
+      sayWelcomeAnn();</pre>
+    <hr>
+    <h2>3.What is the purpose of async/await</h2>
+    <h3>Async: It simply allows us to write promises-based code as if it was synchronous and it checks that we are not breaking the execution thread.
+         It operates asynchronously via the event loop.
+          Async functions will always return a value.</h3>
+          <h3>Await: Await function is used to wait for the promise. It could be used within the async block only.
+             It makes the code wait until the promise returns a result. It only makes the async block wait</h3>
+    <pre> const getData = async() => {
+        let y = await "Hello World";
+        console.log(y);
+    }
+     
+    console.log(1);
+    getData();
+    console.log(2);</pre>
+    <hr>
+    <h2>4.Explain prototype</h2>
+   <pre>function Parent() {
+    this.parentProperty = "I am a property of the parent object";
+  }
+  
+  Parent.prototype.parentMethod = function () {
+    console.log("This is a method of the parent object");
+  };
+  
+  function Child() {
+    this.childProperty = "I am a property of the child object";
+  }
+  Child.prototype = new Parent();
+  
+  var childObj = new Child();
+  
+  console.log(childObj.childProperty); // Output: "I am a property of the child object"
+  console.log(childObj.parentProperty); // Output: "I am a property of the parent object"
+  
+  childObj.parentMethod();</pre>
+    <hr>
+    <h2>5. Prototype Chaining</h2>
+    <pre>var parent = {
+        parentProperty: "I am abc",
+      };
+      
+      var child = Object.create(parent);
+      child.childProperty = "I am xyz";
+      
+      // Access properties using prototype chaining
+      console.log(child.childProperty); // Output: "I am xyz"
+      console.log(child.parentProperty);</pre>
+    <hr>
+    <h2>Inheritance using function constructor</h2>
+    <pre>function Employee(name, age, gender, id) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.id = id;
+    };
+      
+    function Developer(name, age, gender, id, 
+    specialization) {
+      
+        // Calling Employee constructor function
+        Employee.call(this, name, age, gender, id);
+      
+        // Adding a new parameter
+        this.specialization = specialization;
+    }
+    console.log(Employee.prototype);
+    console.log(Developer.prototype);</pre>
+    <hr>
+</body>
+</html>
